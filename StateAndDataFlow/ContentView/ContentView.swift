@@ -68,10 +68,9 @@ struct ButtonView: View {
 }
 
 struct ButtonLogOutView: View {
-    //    @ObservedObject var contentViewVM: ContentViewViewModel
     @EnvironmentObject var loginViewVM: LoginViewViewModel
-    private let storageManager = StorageManager.shared
     
+    private let storageManager = StorageManager.shared
     
     var body: some View {
         Button(action: logOut) {
@@ -87,7 +86,6 @@ struct ButtonLogOutView: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.black, lineWidth: 4)
         )
-        
     }
     
   private func logOut() {

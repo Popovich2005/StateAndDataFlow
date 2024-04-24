@@ -14,7 +14,7 @@ struct User {
 }
 
 final class StorageManager {
-    static let shared = StorageManager() // Создаем shared singleton экземпляр
+    static let shared = StorageManager()
     
     @AppStorage("username") var username: String = ""
     @AppStorage("isRegistered") var isRegistered: Bool = false
@@ -22,16 +22,16 @@ final class StorageManager {
     private init() {}
     
     func saveUser(username: String, isRegistered: Bool) {
-        self.username = username // Сохраняем имя пользователя
-        self.isRegistered = isRegistered // Сохраняем статус регистрации
+        self.username = username
+        self.isRegistered = isRegistered
     }
     
     func loadUser() -> User {
-         User(username: username, isRegistered: isRegistered) // Восстанавливаем данные пользователя из UserDefaults
+         User(username: username, isRegistered: isRegistered)
     }
     
     func deleteUser() {
-        self.username = "" // Удаляем имя пользователя
-        self.isRegistered = false // Удаляем статус регистрации
+        self.username = ""
+        self.isRegistered = false 
     }
 }
