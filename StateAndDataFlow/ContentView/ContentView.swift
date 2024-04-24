@@ -32,7 +32,7 @@ struct ContentView: View {
             
             Spacer()
             
-            ButtonLogOutView()
+            ButtonLogOutView(loginViewVM: loginViewVM, contentViewVM: contentViewVM)
             
         }
         .padding()
@@ -68,13 +68,19 @@ struct ButtonView: View {
 }
 
 struct ButtonLogOutView: View {
-    @EnvironmentObject var loginViewVM: LoginViewViewModel
+    @ObservedObject var loginViewVM: LoginViewViewModel
+    @ObservedObject var contentViewVM: ContentViewViewModel
+
     
     private let storageManager = StorageManager.shared
     
     var body: some View {
-        Button(action: logOut) {
-            Text("LogOut")
+//        Button(action: logOut) {
+//        Button(action: contentViewVM.logOut) {
+
+        Button(action: { contentViewVM.logOut() 
+            loginViewVM.name = "" }) {
+            Text(contentViewVM.buttonLogOut)
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
@@ -88,11 +94,11 @@ struct ButtonLogOutView: View {
         )
     }
     
-  private func logOut() {
-        if storageManager.isRegistered {
-            storageManager.deleteUser()
-        }
-      loginViewVM.name = ""
-    }
+//  private func logOut() {
+//        if storageManager.isRegistered {
+//            storageManager.deleteUser()
+//        }
+//      loginViewVM.name = ""
 }
+
 

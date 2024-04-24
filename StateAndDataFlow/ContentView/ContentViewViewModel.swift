@@ -10,10 +10,10 @@ import Combine
 
 final class ContentViewViewModel: ObservableObject {
     let objectWillChange = ObservableObjectPublisher()
+    let buttonLogOut = "LogOut"
     
     var counter = 3
     var buttonTitle = "Start"
-    var buttonLogOut = "LogOut"
     
     private let storageManager = StorageManager.shared
     
@@ -31,6 +31,12 @@ final class ContentViewViewModel: ObservableObject {
         }
         
         buttonDidTapped()
+    }
+    
+    func logOut() {
+        if storageManager.isRegistered {
+            storageManager.deleteUser()
+        }
     }
     
     @objc private func updateCounter() {
@@ -59,5 +65,4 @@ final class ContentViewViewModel: ObservableObject {
         
         objectWillChange.send()
     }
-    
 }

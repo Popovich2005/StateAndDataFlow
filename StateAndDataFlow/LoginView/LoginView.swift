@@ -27,8 +27,9 @@ struct LoginView: View {
             }
             .padding()
                         
-            Button(action: login) {
+            Button(action: loginViewVM.login) {
                 Label("OK", systemImage: "checkmark.circle")
+                
             }
             .foregroundColor(loginViewVM.name.count < 3
                              ? Color.gray
@@ -38,14 +39,14 @@ struct LoginView: View {
         }
     }
     
-    private func login() {
-        if !loginViewVM.name.isEmpty {
-            loginViewVM.isLoggedIn.toggle()
-            storageManager.saveUser(username: loginViewVM.name, 
-                                    isRegistered: true
-            )
-        }
-    }
+//    private func login() {
+//        if !loginViewVM.name.isEmpty {
+//            loginViewVM.isLoggedIn.toggle()
+//            storageManager.saveUser(username: loginViewVM.name, 
+//                                    isRegistered: true
+//            )
+//        }
+//    }
 }
 
 #Preview {
