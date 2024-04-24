@@ -9,7 +9,6 @@ import Foundation
 
 final class LoginViewViewModel: ObservableObject {
     @Published var name = ""
-    @Published var characterCount = 0
     @Published var isLoggedIn = false
     
     private let storageManager = StorageManager.shared

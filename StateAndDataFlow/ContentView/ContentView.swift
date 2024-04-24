@@ -10,15 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var contentViewVM: ContentViewViewModel
     @EnvironmentObject private var loginViewVM: LoginViewViewModel
+    
     private let storageManager = StorageManager.shared
 
-    
     var body: some View {
     
         VStack {
-//            Text("Hi, \(loginViewVM.name)")
             Text("Hi, \(storageManager.loadUser().username)")
-            
                 .font(.title)
                 .padding(.top, 100)
             
@@ -32,7 +30,9 @@ struct ContentView: View {
             
             Spacer()
             
-            ButtonLogOutView(loginViewVM: loginViewVM, contentViewVM: contentViewVM)
+            ButtonLogOutView(loginViewVM: loginViewVM, 
+                             contentViewVM: contentViewVM
+            )
             
         }
         .padding()
@@ -70,16 +70,12 @@ struct ButtonView: View {
 struct ButtonLogOutView: View {
     @ObservedObject var loginViewVM: LoginViewViewModel
     @ObservedObject var contentViewVM: ContentViewViewModel
-
-    
-    private let storageManager = StorageManager.shared
     
     var body: some View {
-//        Button(action: logOut) {
-//        Button(action: contentViewVM.logOut) {
 
-        Button(action: { contentViewVM.logOut() 
-            loginViewVM.name = "" }) {
+        Button(action: { contentViewVM.logOut()
+            loginViewVM.name = ""
+        }) {
             Text(contentViewVM.buttonLogOut)
                 .font(.title)
                 .fontWeight(.bold)
@@ -93,12 +89,6 @@ struct ButtonLogOutView: View {
                 .stroke(.black, lineWidth: 4)
         )
     }
-    
-//  private func logOut() {
-//        if storageManager.isRegistered {
-//            storageManager.deleteUser()
-//        }
-//      loginViewVM.name = ""
 }
 
 
